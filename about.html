@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About the Developer</title>
+
+    <style>
+        /* -------- PAGE BACKGROUND -------- */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #03d5fa; /* Professional deep black */
+            color: #0a0000;
+        }
+
+        /* -------- CONTAINER -------- */
+        .about-container {
+            max-width: 700px;
+            background: rgba(4, 195, 253, 0.795); 
+            padding: 40px;
+            margin: 60px auto;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(3, 61, 253, 0.925);
+            backdrop-filter: blur(5px);
+            text-align: center;
+        }
+
+        /* -------- HEADING WITH ICON -------- */
+        .title-with-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .title-with-icon img {
+            width: 40px;
+            height: 40px;
+        }
+
+        h1, h2 {
+            color: #ffffff;
+            margin: 0;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #0c0000;
+            font-size: 16px;
+            text-align: left;
+        }
+
+        /* -------- HOME BUTTON -------- */
+        #go-home-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 25px;
+            transition: 0.3s;
+        }
+
+        #go-home-button:hover {
+            background-color: #1e40af;
+        }
+
+        /* Small spacing at end */
+        .bottom-space {
+            height: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="about-container">
+        
+        <!-- Title with Icon -->
+        <div class="title-with-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/1055/1055646.png" alt="Developer Icon">
+            <h1>About the Developer</h1>
+        </div>
+
+        <p>
+            Hi, I'm <strong>Vedika Vinay Bomble</strong> — a B.Tech Computer Engineering student at 
+            Pillai College of Engineering. I am passionate about <strong>AI, machine learning, 
+            and modern web development</strong>.
+        </p>
+
+        <p>
+            I create tools that help students learn smarter, prepare better, and achieve more.  
+            I love building intelligent systems that solve real problems for students.
+        </p>
+
+        <p>
+            I am also the creator of <strong>WebsterAI</strong> — my vision of a modern student platform.
+            WebsterAI guides students for internships, provides AI-powered interview preparation,
+            helps students understand their skills, and tracks their personal progress.
+        </p>
+
+        <p>
+            My goal is to build platforms that support students across the world in choosing
+            the right path in technology, improve their confidence, and unlock better opportunities.
+        </p>
+
+        <h2>Contact Me</h2>
+        <p>Email: <strong>vedikabomble@gmail.com</strong></p>
+        <p>Feel free to reach out for collaboration, feedback, or suggestions!</p>
+
+        <button id="go-home-button">Go Back Home</button>
+
+        <div class="bottom-space"></div>
+    </div>
+
+    <script>
+        document.getElementById("go-home-button").addEventListener("click", function () {
+            window.location.href = "index.html";
+        });
+    </script>
+
+</body>
+</html>

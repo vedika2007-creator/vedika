@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Internship Tracker</title>
+
+    <style>
+        /* --------- PAGE BACKGROUND --------- */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, hwb(192 65% 6%), #e6f0ff, #dce7ff);
+            padding: 20px;
+            color: black;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --------- HEADER ANIMATION --------- */
+        h1 {
+            text-align: center;
+            font-size: 32px;
+            background: linear-gradient(90deg, #005eff, #00c3ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #7dbaff; }
+            to { text-shadow: 0 0 15px #005eff; }
+        }
+
+        /* --------- TABLE --------- */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            background: white;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th {
+            background: #005eff;
+            color: white;
+            padding: 12px;
+        }
+        td {
+            border: 1px solid #d0d0d0;
+            padding: 10px;
+        }
+
+        /* --------- BOX OUTPUT --------- */
+        .box {
+            width: 100%;
+            padding: 12px;
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            white-space: pre-line;
+            border-radius: 8px;
+            animation: boxFade 0.4s ease-in-out;
+        }
+
+        @keyframes boxFade {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --------- BUTTON STYLING --------- */
+        button {
+            padding: 12px;
+            margin: 8px 0;
+            cursor: pointer;
+            width: 100%;
+            border: none;
+            font-size: 16px;
+            border-radius: 8px;
+            color: white;
+            background: linear-gradient(90deg, #007bff, #00c3ff);
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.03);
+            box-shadow: 0px 4px 12px rgba(0, 123, 255, 0.4);
+        }
+
+        /* --------- CHATGPT BUTTON --------- */
+        .chat-btn {
+            margin-top: 40px;
+            padding: 18px;
+            background: linear-gradient(90deg, #ff7a00, #ffbb00);
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .chat-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 4px 14px rgba(255, 153, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>✨ Internship Tracker ✨</h1>
+
+<!-- INPUT FORM -->
+<h3>Add Internship Entry</h3>
+<input id="company" placeholder="Company Name"><br><br>
+<input id="status" placeholder="Status (Applied / Interview / Offer)"><br><br>
+<input id="date" type="date"><br><br>
+<textarea id="notes" placeholder="Notes" rows="3" cols="30"></textarea><br><br>
+<button onclick="addEntry()">➕ Add Internship</button>
+
+<!-- MAIN TABLE -->
+<table id="internshipTable">
+    <tr>
+        <th>Company</th>
+        <th>Status</th>
+        <th>Interview Date</th>
+        <th>Notes</th>
+    </tr>
+</table>
+
+<br>
+
+<!-- SCORE UPDATE -->
+<h3>How prepared are you for your interview? Enter your current Interview Readiness level</h3>
+<input id="score" type="number" placeholder="Enter Score (0–100)">
+<button onclick="updateScore()">Get AI Feedback</button>
+<div id="scoreBox" class="box"></div>
+
+<br>
+
+<!-- SELECT ENTRY -->
+<h3>Select Entry for AI Analysis</h3>
+<select id="entrySelect"></select>
+
+<br><br>
+
+<button onclick="generateAI()">✨ Generate AI Interview Questions</button>
+<div id="aiQuestions" class="box"></div>
+
+<button onclick="generateRoadmap()">📅 Generate AI Roadmap</button>
+<div id="aiRoadmap" class="box"></div>
+
+<button onclick="generateTasks()">📝 Generate AI Tasks</button>
+<div id="aiTasks" class="box"></div>
+
+<!-- GO TO CHATGPT -->
+<button class="chat-btn" onclick="location.href='chat.html'">
+    🚀 Go to Internship Chatbot →
+</button>
+
+<script>
+/* ---------------------- MODIFIED LOGIC ---------------------- */
+let entries = []; // start fresh every time (no localStorage)
+
+// function save() { localStorage.setItem("internships", JSON.stringify(entries)); } // removed
+
+function render() {
+    let table = document.getElementById("internshipTable");
+    table.innerHTML = `
+        <tr>
+            <th>Company</th>
+            <th>Status</th>
+            <th>Interview Date</th>
+            <th>Notes</th>
+        </tr>
+    `;
+
+    let dropdown = document.getElementById("entrySelect");
+    dropdown.innerHTML = "";
+
+    entries.forEach((e, index) => {
+        table.innerHTML += `
+            <tr>
+                <td>${e.company}</td>
+                <td>${e.status}</td>
+                <td>${e.date}</td>
+                <td>${e.notes}</td>
+            </tr>
+        `;
+
+        let opt = document.createElement("option");
+        opt.value = index;
+        opt.textContent = `${e.company} (${e.status})`;
+        dropdown.appendChild(opt);
+    });
+}
+render();
+
+function addEntry() {
+    let company = document.getElementById("company").value;
+    let status = document.getElementById("status").value;
+    let date = document.getElementById("date").value;
+    let notes = document.getElementById("notes").value;
+
+    if (!company || !status || !date) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    entries.push({ company, status, date, notes });
+    // save(); // removed
+    render();
+    alert("Entry Added!");
+}
+
+function updateScore() {
+    let s = Number(document.getElementById("score").value);
+    if (isNaN(s) || s < 0 || s > 100) return;
+
+    let msg = "";
+
+    if (s < 40) msg = "Your score is low. Focus on basics and practice daily.";
+    else if (s < 70) msg = "Good progress! Strengthen weak areas.";
+    else msg = "Excellent! You are interview-ready.";
+
+    document.getElementById("scoreBox").textContent = msg;
+}
+
+function generateAI() {
+    let i = document.getElementById("entrySelect").value;
+    let e = entries[i];
+    if (!e) return;
+
+    let company = e.company.toLowerCase();
+    let questions = [];
+
+    if (company.includes("google")) {
+        questions = [
+            "Explain how you would optimize a distributed system.",
+            "How does HashMap work internally?",
+            "Solve: Longest Increasing Subsequence.",
+            "Explain Big-O notation.",
+            "Design YouTube end-to-end."
+        ];
+    } else if (company.includes("amazon")) {
+        questions = [
+            "Explain Amazon Leadership Principles.",
+            "Design a scalable warehouse inventory system.",
+            "Find the Kth largest element."
+        ];
+    } else {
+        questions = [
+            "Tell me about a challenging project.",
+            "Explain OOP in simple terms.",
+            "Reverse a linked list.",
+            "How do you manage deadlines?"
+        ];
+    }
+
+    document.getElementById("aiQuestions").textContent =
+        "AI Interview Questions for " + e.company + ":\n\n" + questions.join("\n");
+}
+
+function generateRoadmap() {
+    let i = document.getElementById("entrySelect").value;
+    let e = entries[i];
+    if (!e) return;
+
+    let daysLeft = Math.ceil((new Date(e.date) - new Date()) / 86400000);
+
+    let roadmap =
+        `📅 You have ${daysLeft} days left for the interview at ${e.company}.\n\n` +
+        "Week 1: Learn DSA fundamentals\n" +
+        "Week 2: Solve 40 coding questions\n" +
+        "Week 3: System design basics\n" +
+        "Week 4: Mock interviews + Resume Improvements";
+
+    document.getElementById("aiRoadmap").textContent = roadmap;
+}
+
+function generateTasks() {
+    let i = document.getElementById("entrySelect").value;
+    let e = entries[i];
+    if (!e) return;
+
+    let tasks = [
+        "Solve 3 coding questions today",
+        "Write system design summary",
+        "Practice behavioural round examples",
+        "Improve resume using STAR method"
+    ];
+
+    document.getElementById("aiTasks").textContent =
+        "📝 AI Suggested Tasks:\n\n" + tasks.join("\n");
+}
+</script>
+
+</body>
+</html>

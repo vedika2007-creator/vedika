@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rate & Review | Webster AI</title>
+
+  <style>
+    body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        background: linear-gradient(135deg, #13b1fa, #3763f5);
+        align-items: center;
+        color: white;
+    }
+
+    .container {
+        background: rgba(255, 255, 255, 0.12);
+        padding: 35px;
+        width: 500px;
+        border-radius: 20px;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 0 25px rgba(2, 128, 253, 0.4);
+    }
+
+    select, textarea {
+        width: 100%;
+        padding: 12px;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        resize: none;
+        font-size: 15px;
+        margin-top: 10px;
+        background: rgba(255,255,255,0.2);
+        color: black;
+    }
+
+    button {
+        width: 100%;
+        padding: 12px;
+        background: linear-gradient(135deg, #4d7bfa, #00c6ff);
+        border: none;
+        border-radius: 8px;
+        color: white;
+        font-size: 17px;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+
+    button:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 12px white;
+    }
+
+    #backBtn {
+        background: linear-gradient(135deg, #ff7a00, #ff4800);
+        margin-top: 10px;
+    }
+  </style>
+
+</head>
+<body>
+
+<div class="container">
+    <h2 style="text-align:center;">⭐ Rate & Review Webster AI</h2>
+
+    <label>Your Rating (1–5):</label>
+    <select id="ratingSelect">
+        <option value="1">1 - Poor</option>
+        <option value="2">2 - Fair</option>
+        <option value="3">3 - Good</option>
+        <option value="4">4 - Very Good</option>
+        <option value="5">5 - Excellent</option>
+    </select>
+
+    <label style="margin-top:15px;">Write a Review:</label>
+    <textarea id="reviewText" rows="4" placeholder="Write your feedback..."></textarea>
+
+    <button onclick="submitReview()">Submit Review</button>
+
+    <button id="backBtn" onclick="window.location.href='chat.html'">Back to Chatbot</button>
+
+    <p id="thankYouMsg" style="text-align:center; margin-top:15px; color:#e6f0ff;"></p>
+
+    <!-- Hidden Netlify form -->
+    <form name="user-reviews" method="POST" data-netlify="true" hidden>
+    <input type="hidden" name="form-name" value="user-reviews">
+    <input type="hidden" name="rating" id="hiddenRating">
+    <input type="hidden" name="review" id="hiddenReview">
+</form>
+</div>
+
+<script>
+function submitReview() {
+    const rating = document.getElementById("ratingSelect").value;
+    const review = document.getElementById("reviewText").value.trim();
+
+    document.getElementById("hiddenRating").value = rating;
+    document.getElementById("hiddenReview").value = review;
+
+    document.forms["user-reviews"].submit();
+
+    document.getElementById("thankYouMsg").innerText = "Thank you for your feedback!";
+}
+</script>
+
+</body>
+</html>

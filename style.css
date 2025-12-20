@@ -1,0 +1,198 @@
+/* ---- ORIGINAL STYLES ---- */
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+/* REMOVE universal white text override */
+body {
+  color: white;
+}
+
+/* For pep.html only → override white text */
+body.pep-page, 
+body.pep-page * {
+  color: #1a1a1a !important;   /* DARK TEXT */
+}
+
+/* Container */
+.container {
+  width: 420px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+label {
+  font-weight: bold;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0 15px;
+  border-radius: 8px;
+  border: none;
+}
+
+/* Buttons */
+button {
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  background: cyan;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+button:hover {
+  background: #00e0e0;
+  transform: scale(1.05);
+}
+
+/* Results box */
+.results-box {
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(0, 255, 255, 0.05);
+  border-radius: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* Headings */
+h4 {
+  margin-top: 20px;
+  text-decoration: underline;
+}
+
+/* Individual result */
+.result-item {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 10px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+/* ---- FIX 2: DARK BLUE LINKS ONLY IN PEP PAGE ---- */
+body.pep-page a {
+  color: #003366 !important;        /* DARK BLUE */
+  font-weight: bold;
+}
+body.pep-page a:hover {
+  color: #001a33 !important;
+  text-decoration: underline;
+}
+
+/* ---- GLOBAL NEON LINKS (other pages unchanged) ---- */
+a {
+  color: #00eaff;
+  text-decoration: none;
+}
+a:hover {
+  color: #00bcd4;
+  text-decoration: underline;
+}
+
+/* ---- FULL-SCREEN ANIMATED GRADIENT ---- */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(135deg, #030409 0%, #071029 25%, #0b1630 50%, #0f172a 75%, #0b0f1a 100%) !important;
+  background-size: 400% 400% !important;
+  animation: pageGradientShift 12s ease infinite !important;
+  background-attachment: fixed !important;
+}
+
+/* Moving light effects */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 15% 20%, rgba(0,160,255,0.06), transparent 12%),
+              radial-gradient(circle at 85% 80%, rgba(255,120,60,0.04), transparent 12%);
+  mix-blend-mode: screen;
+  z-index: 0;
+  animation: spotlightPulse 8s ease-in-out infinite;
+}
+
+@keyframes pageGradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes spotlightPulse {
+  0% { opacity: 0.45; transform: scale(1); }
+  50% { opacity: 0.65; transform: scale(1.05); }
+  100% { opacity: 0.45; transform: scale(1); }
+}
+
+/* Keep content above effects */
+* { position: relative; z-index: 1; }
+
+/* Fix heading not visible */
+h1 {
+  margin-top: 120px !important;
+  color: #e8ecff !important;   /* soft bright blue */
+  z-index: 5 !important;
+}
+/* Make Go To Internship Tracker button small only on pep page */
+body.pep-page #goTrackerBtn {
+  width: auto !important;
+  padding: 8px 16px !important;
+  font-size: 0.85rem !important;
+  border-radius: 8px !important;
+  background: #4aa3ff !important;
+}
+
+body.pep-page #goTrackerBtn:hover {
+  background: #1c8cff !important;
+}
+/* Make About Developer button same as Ask button */
+#aboutDevBtn {
+  width: 100% !important;
+  padding: 14px !important;
+  font-size: 18px !important;
+  background: cyan !important;
+  border-radius: 10px !important;
+}
+
+#aboutDevBtn:hover {
+  background: #00e0e0 !important;
+  transform: scale(1.05) !important;
+}
+/* Make Rating Page button look exactly like About Dev / Ask button */
+#ratingPageBtn {
+    width: 100% !important;
+    padding: 14px !important;
+    font-size: 18px !important;
+    background: cyan !important;
+    color: rgb(255, 254, 254) !important;
+    border-radius: 10px !important;
+    text-align: center;
+    display: block;
+    margin: 10px 0 !important;
+    cursor: pointer;
+    transition: 0.3s !important;
+    border: none !important;
+}
+
+#ratingPageBtn:hover {
+    background: #00e0e0 !important;
+    transform: scale(1.05) !important;
+}
+#ratingPageBtn:focus {
+    outline: none;
+    box-shadow: none;
+}

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Webster AI | Internship Predictor</title>
+</head>
+
+<body style="margin:0; padding:0; font-family: 'Arial', sans-serif; background:#f1f4f9;">
+
+<!-- HEADER BAR -->
+<div style="width:100%; background:#4285F4; padding:15px 0; text-align:center; color:white; font-size:22px; font-weight:bold; letter-spacing:1px; box-shadow:0 2px 10px rgba(0,0,0,0.2);">
+  Internship Fit Predictor
+</div>
+
+<!-- Main Card Container -->
+<div style="max-width:650px; margin:40px auto; background:white; padding:30px; border-radius:16px; box-shadow:0 8px 25px rgba(0,0,0,0.15);">
+
+    <h2 style="margin-bottom:25px; text-align:center; color:#333; font-size:24px;">Fill Your Details</h2>
+
+    <label style="font-weight:bold;">Name</label>
+    <input type="text" id="name" 
+           style="width:100%; padding:12px; margin:8px 0 18px 0; border:1px solid #ccc; border-radius:8px; font-size:15px;">
+
+    <label style="font-weight:bold;">Skills</label>
+    <input type="text" id="skills" 
+           style="width:100%; padding:12px; margin:8px 0 18px 0; border:1px solid #ccc; border-radius:8px; font-size:15px;">
+
+    <label style="font-weight:bold;">Interest</label>
+    <select id="interest" 
+            style="width:100%; padding:12px; margin:8px 0 18px 0; border:1px solid #ccc; border-radius:8px; font-size:15px;">
+      <option>AI</option>
+      <option>Web Development</option>
+      <option>Cybersecurity</option>
+      <option>Data Science</option>
+    </select>
+
+    <label style="font-weight:bold;">CGPA</label>
+    <input type="number" id="cgpa" step="0.01" min="0" max="10" 
+           style="width:100%; padding:12px; margin:8px 0 18px 0; border:1px solid #ccc; border-radius:8px; font-size:15px;">
+
+    <label style="font-weight:bold;">Courses Studied</label>
+    <input type="text" id="courses" 
+           style="width:100%; padding:12px; margin:8px 0 18px 0; border:1px solid #ccc; border-radius:8px; font-size:15px;">
+
+    <!-- Predict Button -->
+    <button id="predictBtn" 
+            style="width:100%; padding:14px; background:#4285F4; border:none; border-radius:10px; color:white; 
+                   font-size:17px; font-weight:bold; cursor:pointer; box-shadow:0 4px 10px rgba(66,133,244,0.3); margin-top:5px;">
+        Predict Internship
+    </button>
+
+    <!-- Results Box -->
+    <div class="results-box" 
+         style="margin-top:30px; padding:20px; border-left:5px solid #34A853; border-radius:10px; background:#f1fdf4; width:100%; box-sizing:border-box;">
+
+        <h3 id="result" style="color:#0c6b34; margin-bottom:10px;"></h3>
+        <h3 id="place" style="color:#0c6b34; margin-bottom:20px;"></h3>
+
+        <h4 style="color:#0c6b34; margin-bottom:8px;">Strengths</h4>
+        <div id="strengths" style="margin-bottom:18px;"></div>
+
+        <h4 style="color:#0c6b34; margin-bottom:8px;">Weaknesses</h4>
+        <div id="weaknesses" style="margin-bottom:18px;"></div>
+
+        <h4 style="color:#0c6b34; margin-bottom:8px;">Areas to Improve</h4>
+        <div id="areas"></div>
+    </div>
+
+    <!-- Next Button -->
+    <button id="goPrepBtn"
+            style="display:none; width:100%; margin-top:25px; padding:14px 25px; font-size:17px; border:none; border-radius:10px; 
+                   background-color:#4285F4; color:white; cursor:pointer; box-shadow:0 4px 10px rgba(66,133,244,0.3);">
+      Next
+    </button>
+
+</div>
+
+<!-- Your JS -->
+<script src="script.js"></script>
+
+<!-- Show Next Button After Prediction -->
+<script>
+  const goPrepBtn = document.getElementById('goPrepBtn');
+  const resultDiv = document.getElementById('result');
+
+  function showNextButton() {
+    if (resultDiv.innerText.trim() !== "") {
+      goPrepBtn.style.display = 'inline-block';
+    } else {
+      setTimeout(showNextButton, 200);
+    }
+  }
+  showNextButton();
+
+  goPrepBtn.addEventListener('click', () => {
+    window.location.href = 'prep.html';
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Webster AI | Login | By Vedika Vinay Bomble</title>
+</head>
+<body style="display:flex; justify-content:center; align-items:center; height:100vh; background: linear-gradient(135deg, #4a90e2, #50e3c2); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+
+  <div style="text-align:center; background-color: rgba(255,255,255,0.9); padding:50px 40px; border-radius:20px; box-shadow:0 8px 20px rgba(0,0,0,0.2); max-width:450px;">
+    <h1 style="font-size:2.8rem; margin-bottom:20px; color:#333;">Welcome to Webster AI 🚀</h1>
+    <p style="font-size:1.2rem; margin-bottom:35px; color:#555;">Your AI Internship & Interview Assistant</p>
+    <button id="loginBtn" style="background-color:#4285F4; color:white; font-size:1.1rem; padding:15px 30px; border:none; border-radius:10px; cursor:pointer; transition: transform 0.2s, box-shadow 0.2s;">
+      Login with Google
+    </button>
+    <p id="userInfo" style="margin-top:20px; font-size:1rem; color:#222; word-wrap: break-word;"></p>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBuoI5DWtTkxE3ry7aCvydlFgCftczzrvA",
+      authDomain: "webster-ai-71880.firebaseapp.com",
+      projectId: "8webster-ai-7180",
+      storageBucket: "webster-ai-71880.firebasestorage.app",
+      messagingSenderId: "873059951306",
+      appId: "1:873059951306:web:702158fce4c811cefd4a33",
+      measurementId: "G-BBQF1SNHNP"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    document.getElementById("loginBtn").addEventListener("click", () => {
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const user = result.user;
+          console.log("User Info:", user);
+          document.getElementById("userInfo").innerText = 
+            `Logged in as: ${user.displayName} (${user.email})`;
+
+          setTimeout(() => {
+            window.location.href = "predic.html";
+          }, 1000);
+        })
+        .catch((error) => {
+          console.error(error);
+          alert("Login failed. Please try again.");
+        });
+    });
+  </script>
+
+</body>
+</html>

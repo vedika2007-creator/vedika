@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Internship Prep | Webster AI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="display:flex; flex-direction:column; align-items:center; gap:30px;">
+  <body class="pep-page"></body>
+
+  <h1 style="display:block;margin-top:30px;color:white;">Internship Preparation Resources</h1>
+
+  <!-- Section: Upload Resume -->
+  <section style="display:block; width:80%;">
+    <h2>Upload Your Resume</h2>
+    <input type="file" id="resumeUpload" accept=".pdf,.doc,.docx" style="display:block; margin-bottom:10px;">
+    <button id="analyzeBtn" style="display:block; margin-bottom:10px; padding:8px 20px;">Analyze Resume</button>
+    <div id="resumeMessage" style="color:green; margin-bottom:10px;"></div>
+    <div id="resumeAnalysis" style="margin-top:10px;"></div>
+  </section>
+
+  <!-- Section: Interview Tips -->
+  <section style="display:block; width:80%;">
+    <h2>Interview Tips</h2>
+
+    <button class="tipBtn" style="display:block; margin-top:5px;">How to prepare for technical interviews?</button>
+    <div class="tipAnswer" style="display:none; margin-left:15px; margin-bottom:10px;">
+      Practice coding problems, Strengthen your fundamentals, understand algorithms, Learn Problem-solving Patterns, and do mock interviews.
+    </div>
+
+    <button class="tipBtn" style="display:block; margin-top:5px;">Behavioral interview questions</button>
+    <div class="tipAnswer" style="display:none; margin-left:15px; margin-bottom:10px;">
+      Prepare answers for questions about teamwork, projects, challenges, Failure, Learning and leadership experiences.
+    </div>
+  </section>
+
+  <!-- Section: Skill Development Resources -->
+  <section style="display:block; width:80%;">
+    <h2>Skill Development Resources</h2>
+    <ul style="list-style-type:disc; padding-left:20px;">
+      <li><a href="https://www.w3schools.com/python/" target="_blank">Python Tutorials</a></li>
+      <li><a href="https://www.geeksforgeeks.org/data-structures/" target="_blank">Data Structures & Algorithms</a></li>
+      <li><a href="https://www.freecodecamp.org/" target="_blank">Web Development (HTML, CSS, JavaScript)</a></li>
+      <li><a href="https://www.coursera.org/learn/machine-learning" target="_blank">Machine Learning & AI</a></li>
+      <li><a href="https://www.learnenough.com/git-tutorial" target="_blank">Version Control with Git & GitHub</a></li>
+      <li><a href="https://www.hackerrank.com/domains/tutorials/10-days-of-javascript" target="_blank">Competitive Program</a></li>
+    </ul>
+  </section>
+
+  <!-- Navigation Button to Tracker -->
+  <button id="goTrackerBtn" style="display:block; margin-top:30px; margin-bottom: 12px; padding:12px 25px; font-size:1rem; border:none; border-radius:8px; background-color:#4285F4; color:white; cursor:pointer;">Go to Internship Tracker</button>
+
+  <script>
+    // ---------- Resume Upload ----------
+    const resumeUpload = document.getElementById('resumeUpload');
+    const resumeMessage = document.getElementById('resumeMessage');
+    const resumeAnalysis = document.getElementById('resumeAnalysis');
+    const analyzeBtn = document.getElementById('analyzeBtn');
+
+    resumeUpload.addEventListener('change', (event) => {
+      const file = event.target.files[0];
+      if(file){
+        resumeMessage.innerHTML = `Resume uploaded successfully: <strong>${file.name}</strong>`;
+        resumeAnalysis.innerHTML = '';
+      } else {
+        resumeMessage.innerHTML = '';
+        resumeAnalysis.innerHTML = '';
+      }
+    });
+
+    // ---------- AI Resume Analyzer (Frontend Simulation) ----------
+    analyzeBtn.addEventListener('click', () => {
+      const file = resumeUpload.files[0];
+      if(!file){
+        alert("Please upload a resume first!");
+        return;
+      }
+
+      resumeAnalysis.innerHTML = `
+        <h3>Resume Analysis:</h3>
+        <ul>
+          <li>Strengths: Projects highlighted, clear formatting.</li>
+          <li>Weaknesses: Missing technical keywords like Python, Java.</li>
+          <li>Areas to Improve: Add measurable achievements, better summary.</li>
+        </ul>
+      `;
+    });
+
+    // ---------- Interview Tips Toggle ----------
+    const tipButtons = document.querySelectorAll('.tipBtn');
+    tipButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const answerDiv = btn.nextElementSibling;
+        answerDiv.style.display = (answerDiv.style.display === 'none') ? 'block' : 'none';
+      });
+    });
+
+    // ---------- Navigate to Tracker ----------
+    document.getElementById("goTrackerBtn").addEventListener("click", () => {
+      window.location.href = "tracker.html";
+    });
+  </script>
+
+  <!-- 🔵 ADDED STYLING — DOES NOT CHANGE YOUR CODE -->
+  <style>
+    body {
+      background: #eef6ff !important;
+      font-family: Arial, sans-serif;
+    }
+
+    section {
+      background: white;
+      padding: 20px 25px !important;
+      border-radius: 16px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+      margin-bottom: 25px;
+    }
+
+    section h2 {
+      margin-bottom: 15px;
+      color: #2a2a2a;
+    }
+
+    .tipBtn {
+      width: 100%;
+      background: #d6ecff;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      text-align: left;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.2s ease;
+    }
+
+    .tipBtn:hover {
+      background: #c3e3ff;
+    }
+
+    .tipAnswer {
+      background: #f7fbff;
+      border-left: 4px solid #4aa3ff;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-top: 8px;
+      font-size: 0.95rem;
+    }
+
+    #analyzeBtn {
+      background: #4aa3ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    #analyzeBtn:hover {
+      background: #1c8cff;
+    }
+
+    #goTrackerBtn {
+      background: #4aa3ff !important;
+      border-radius: 10px !important;
+    }
+
+    #goTrackerBtn:hover {
+      background: #1c8cff !important;
+    }
+  </style>
+
+</body>
+</html>

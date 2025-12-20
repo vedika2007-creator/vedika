@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Webster AI | Interview Analyzer</title>
+</head>
+<body>
+
+<h2>AI Interview Intuition Checker</h2>
+
+<label>Enter Interview Answer:</label><br>
+<textarea id="answer" rows="6" cols="50"></textarea>
+
+<br><br>
+<button onclick="analyze()">Analyze Answer</button>
+
+<h3 id="confidence"></h3>
+<h3 id="clarity"></h3>
+<h3 id="feedback"></h3>
+
+<script>
+function analyze(){
+
+  let text = document.getElementById("answer").value.toLowerCase();
+
+  let confidence = 50;
+  let clarity = "Average";
+  let feedback = "";
+
+  if(text.length > 100){
+    confidence += 20;
+    clarity = "Good";
+  }
+
+  if(text.includes("team") || text.includes("project")){
+    confidence += 10;
+  }
+
+  if(text.includes("learn") || text.includes("growth")){
+    confidence += 10;
+  }
+
+  if(text.includes("um") || text.includes("uh")){
+    confidence -= 10;
+  }
+
+  if(confidence > 90){
+    feedback = "Excellent communication skills!";
+  }
+  else if(confidence > 70){
+    feedback = "Good candidate with clear responses.";
+  }
+  else{
+    feedback = "Needs improvement in confidence and structure.";
+  }
+
+  document.getElementById("confidence").innerText =
+    "Confidence Score: " + confidence + "%";
+
+  document.getElementById("clarity").innerText =
+    "Communication clarity: " + clarity;
+
+  document.getElementById("feedback").innerText =
+    "Feedback: " + feedback;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Webster AI</title>
+</head>
+<body>
+
+<h1>Welcome to Webster AI 🚀</h1>
+<p>Your AI Internship & Interview Assistant</p>
+
+<p>Status: <span id="status">Loading Firebase...</span></p>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBuoI5DWtTkxE3ry7aCvydlFgCftczzrvA",
+    authDomain: "webster-ai-71880.firebaseapp.com",
+     projectId: "8webster-ai-7180",
+    storageBucket: "webster-ai-71880.firebasestorage.app",
+    messagingSenderId: "873059951306",
+    appId: "1:873059951306:web:702158fce4c811cefd4a33",
+    measurementId: "G-BBQF1SNHNP"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  getAnalytics(app);
+
+  document.getElementById("status").innerText = "✅ Firebase Connected Successfully!";
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Webster AI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+<p>Your career guidance platform is loading...</p>
+
+<button id="loginBtn">Login with Google</button>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
+<body>
+    <h2>Webster AI Modules</h2>
+
+<a href="predict.html">Internship Predictor</a><br><br>
+
+<a href="interview.html">Interview Intuition Checker</a>
+</body>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy | Webster AI</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #13b1fa, #3763f5);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    .container {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(12px);
+      padding: 30px 40px;
+      border-radius: 20px;
+      max-width: 800px;
+      box-shadow: 0 0 30px rgba(2, 128, 253, 0.4);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #e2e8ff;
+    }
+
+    h2 {
+      margin-top: 20px;
+      color: #cce1ff;
+    }
+
+    p, li {
+      line-height: 1.6;
+      margin-bottom: 12px;
+      color: #e2e8ff;
+    }
+
+    ul {
+      margin-left: 20px;
+    }
+
+    a {
+      color: #00eaff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    #goHomeBtn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #ff7a00, #ff4800);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 17px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: 0.3s;
+    }
+
+    #goHomeBtn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #ff7a00;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Privacy Policy</h1>
+
+    <p>Welcome to Webster AI Internship Chatbot. Your privacy is important to us. This page outlines how we handle your information.</p>
+
+    <h2>Information Collection</h2>
+    <p>We do not collect any personally identifiable information. Your questions are processed locally in your browser.</p>
+
+    <h2>Use of Information</h2>
+    <p>Any input you provide is used only to generate answers in the chatbot. We do not share it with third parties.</p>
+
+    <h2>Cookies & Tracking</h2>
+    <p>We do not use cookies or tracking technologies.</p>
+
+    <h2>External Links</h2>
+    <p>Our chatbot may link to external websites. We are not responsible for their privacy practices.</p>
+
+    <h2>Contact</h2>
+    <p>If you have questions about this privacy policy, you can contact us at <a href="mailto:info@websterai.com">info@websterai.com</a>.</p>
+
+    <button id="goHomeBtn">Back to Home</button>
+  </div>
+
+  <script>
+    document.getElementById("goHomeBtn").addEventListener("click", function(){
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>
