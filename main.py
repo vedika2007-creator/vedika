@@ -3,9 +3,9 @@ from flask import Flask, render_template, request
 import csv
 
 # Import your backend scripts
-from backend import ai_interval_analyzer
+from backend import AIIntervalAnalyzer 
 from backend import gemini_ai
-from backend import internship_prediction
+from backend import InternshipPredictionPython 
 
 app = Flask(__name__)
 
@@ -84,4 +84,5 @@ def run_ai():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))  # Dynamic port for deployment
+
     app.run(host='0.0.0.0', port=port)
